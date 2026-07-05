@@ -1,0 +1,214 @@
+
+103.150.136.82
+
+
+********** restart ******
+
+root
+cd paripath
+git pull
+systemctl daemon-reload
+systemctl restart shaleyparipath.com.gunicorn
+exit
+
+
+
+
+
+
+%%%%%%% git clone %%%%%%%%%%%
+
+https://github.com/prasanna-kale/paripath.git
+
+
+
+cd paripath
+
+
+
+********** Create Virtual env *****
+
+virtualenv venv
+
+
+
+
+********** Activate Virtual env ****
+
+source venv/bin/activate
+
+
+
+
+
+
+***** install django ******
+
+pip install django
+
+
+
+******** Install Gunicorn ******
+ 
+pip install gunicorn
+
+
+*********** Deactivate Virtualenv *****
+
+deactivate
+
+
+
+************ Create System Socket File for Gunicorn *******
+
+Example:- sudo nano /etc/systemd/system/crenta.in.gunicorn.socket
+
+cd  /etc/systemd/system/
+
+sudo nano shaleyparipath.com.gunicorn.socket
+
+
+
+[Unit]
+Description=shaleyparipath.com.gunicorn socket
+
+[Socket]
+ListenStream=/run/shaleyparipath.com.gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
+
+
+
+************** Create System Service File for Gunicorn ******
+Syntax:- sudo nano /etc/systemd/system/your_domain.gunicorn.service
+Example:- sudo nano /etc/systemd/system/shaleyparipath.com.gunicorn.service
+
+cd  /etc/systemd/system/
+
+sudo nano shaleyparipath.com.gunicorn.service
+
+
+[Unit]
+Description=shaleyparipath.com.gunicorn daemon
+Requires=shaleyparipath.com.gunicorn.socket
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/root/paripath
+ExecStart=/root/paripath/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/shaleyparipath.com.gunicorn.sock \
+          paripath.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+
+----------------------------------------------------------------
+sudo systemctl start shaleyparipath.com.gunicorn.socket
+
+sudo systemctl start shaleyparipath.com.gunicorn.service
+
+-----------------------------------------------------------------
+
+
+sudo systemctl enable shaleyparipath.com.gunicorn.socket
+
+sudo systemctl enable shaleyparipath.com.gunicorn.service
+
+
+-----------------------------------------------------------------------
+
+
+sudo systemctl status shaleyparipath.com.gunicorn.socket
+
+sudo systemctl status shaleyparipath.com.gunicorn.service
+
+
+-------------------------------------------
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart shaleyparipath.com.gunicorn
+
+
+--------------------------------
+
+
+****************** Create Virtual Host File ******
+Syntax:- sudo nano /etc/nginx/sites-available/your_domain
+Example:- sudo nano /etc/nginx/sites-available/crenta.in
+
+
+cd /etc/nginx/sites-available
+
+sudo nano shaleyparipath.com
+
+
+
+server{
+    listen 80;
+    listen [::]:80;
+
+    server_name shaleyparipath.com www.shaleyparipath.com;
+    client_max_body_size 500M;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location / {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://unix:/run/shaleyparipath.com.gunicorn.sock;
+    }
+
+    
+}
+
+
+-----------------------------------------------------
+
+
+########## Enable Virtual Host or Create Symbolic Link of Virtual Host File ########
+
+sudo ln -s /etc/nginx/sites-available/shaleyparipath.com /etc/nginx/sites-enabled/shaleyparipath.com
+
+
+
+%%%%%%%%%%%%%%%%%%%%% Check Configuration is Correct or Not %%%%%
+
+sudo nginx -t
+
+
+
+%%%%%%%%%%%% Restart Nginx %%%%%%%%%
+
+sudo service nginx restart
+-------------------------------------
+
+
+
+********** restart ******
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart shaleyparipath.com.gunicorn
+
+
+
+
+--------------------------------------- ssl ------------------
+
+sudo certbot --nginx -d shaleyparipath.com -d www.shaleyparipath.com
+
+
+
+
+
+
+

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9EEYE0B3CE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9EEYE0B3CE');
+</script>
+   <title>Shaley Paripath</title>
+   <meta property="og:image" content="{% static 'images/he.jpg' %}"/>
+   <style>
+      *{
+   margin: 0;
+   margin-bottom: none;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+html{
+   scroll-behavior:smooth;
+}
+
+body{
+   font-size: 100%;
+   font-family: sans-serif;
+}
+section{
+   width: 100%;
+   float:right;
+   position: relative;
+}
+#home{
+   height: fit-content;
+   display: flex;
+}
+
+#about{
+   height: fit-content;
+   margin-top: 100px;
+}
+
+#product{
+   margin-top: 50px;
+   height: fit-content;
+   display: flex;
+}
+.product_detail{
+   margin-top: 100px;
+   margin-left: 100px;
+   font-weight: 600;
+   align-items:start;
+}
+.product_detail h6{
+   font-weight: 600;
+   font-size: 20px;
+   
+}
+.product_img{
+   height: 550px;
+   border-radius: 10px;
+   margin-top: 100px;
+}
+.about_img{
+   height: 550px;
+   border-radius: 10px;
+   margin-top: 100px;
+}
+
+#sider{
+   height: 90vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+#sider .slider_div{
+   margin-top: 100px;
+}
+#contact{
+   height: 100vh;
+}
+
+h1{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   color: #fff;
+}
+.header_img{
+   height: 500px;
+   margin-top: 90px;
+   border-radius: 10px;
+   margin-right: 10px;
+   margin-left: 10vh;
+}
+.hedlines{
+   margin-top: 130px;
+}
+.hedlines li{
+   font-size: 20px;
+}
+
+   .promo-image-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 18px 0 6px;
+      margin-bottom: 0;
+   }
+   .promo-image {
+      width: 100%;
+      max-width: 840px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.14);
+      object-fit: cover;
+      display: block;
+      margin-bottom: 0;
+   }
+
+@media only screen and (min-width: 900px) {
+   .promo-image-wrapper {
+      padding: 14px 0 4px;
+   }
+   .promo-image {
+      max-width: 760px;
+   }
+}
+
+   .card {
+      margin-top: 100px;
+      background-color: #FFF;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .05), 0 20px 50px 0 rgba(0, 0, 0, .1);
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 1.25rem;
+      position: relative;
+      transition: .15s ease-in;
+   }
+   .card:hover,
+   .card:focus-within {
+      box-shadow: 0 0 0 2px #16C79A, 0 10px 60px 0 rgba(0, 0, 0, .1);
+      transform: translateY(-5px);
+   }
+
+.card-image {
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.card-header {
+	margin-top: 1.5rem;
+}
+.card-header a {
+	font-weight: 600;
+	font-size: 1.375rem;
+	line-height: 1.25;
+	padding-right: 1rem;
+	text-decoration: none;
+	color: inherit;
+	will-change: transform;
+	position: relative;
+}
+.card-header a::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.card-footer {
+	margin-top: 1.25rem;
+	border-top: 1px solid #ddd;
+	padding-top: 1.25rem;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.float {
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	bottom: 40px;
+	right: 10px;
+	background-color: rgb(77, 221, 25);
+	color: #FFF;
+	border-radius: 50px;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 2px 2px 3px #999;
+	z-index: 34093409;
+}
+.float i {
+	font-size: 35px;
+}
+
+.float_youtube {
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	bottom: 110px;
+	right: 10px;
+	background-color: rgb(255, 255, 255);
+	border-radius: 50px;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 2px 2px 3px #999;
+	z-index: 34093409;
+}
+.float_youtube i {
+	font-size: 35px;
+	color: red;
+}
+
+.float_fesbook {
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	bottom: 180px;
+	right: 10px;
+	background: #3b5998;
+	border-radius: 50px;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 2px 2px 3px #999;
+	z-index: 34093409;
+}
+.float_fesbook i {
+	font-size: 35px;
+	color: rgb(255, 255, 255);
+}
+
+.my-float{
+	margin-top:22px;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: #ffffff;
+    display: flex;
+    z-index: 4535100;
+}
+nav a {
+    font-size: 18px;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 20px;
+    transition: .3s;
+}
+nav a.active {
+   border-bottom: 2px solid red;
+}
+.contact_box{
+   padding: 10px;
+   border-radius: 20px;
+   background-image: linear-gradient(to left bottom, #cfcfcf, #f7f7f7, #d5d5d5, #eaeaea, #ffffff);
+   height: fit-content;
+         }
+.about_box{
+   padding: 10px;
+   border-radius: 20px;
+   background-image: linear-gradient(to left bottom, #cfcfcf, #f7f7f7, #d5d5d5, #eaeaea, #ffffff);
+   height: fit-content;
+}
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 800px) {
+   .header_img{
+      margin-left: auto;
+      margin-right: auto;
+      height: 400px;
+      margin-bottom: 0;
+      margin-top: 90px;
+   }
+   .hedlines{
+      margin-top: 150px;
+      height: auto;
+      width: 400px;
+      overflow: scroll;
+   }
+   .hedlines li{
+      font-size: 18px;
+   }
+   #home{
+      display: grid;
+   }
+   .product_img{
+      height: 450px;
+   }
+   .about_img{
+      height: 400px;
+   }
+}
+@media only screen and (max-width: 700px) {
+   .header_img_back{
+      display: none;
+   }
+   section{
+      width: 100%;
+      img{
+         border-radius: 10px;
+      }
+   }
+   #product{
+      height: 130vh;
+      display: grid;
+      margin-top: 200px;
+   }
+   .header_img{
+      margin-left: auto;
+      margin-right: auto;
+      height: 310px;
+      margin-bottom: 0;
+      margin-top: 90px;
+   }
+   .hedlines{
+      margin-top: 150px;
+      height: auto;
+      width: 350px;
+      overflow: scroll;
+   }
+   .hedlines li{
+      font-size: 18px;
+   }
+   #home{
+      display: grid;
+   }
+
+   .product_img{
+      height: 460px;
+      margin-top: -150px;
+   }
+   .product_img_div{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+   } 
+   .product_detail{
+      margin-left: 200px;
+      margin-top: 40px;
+   }  
+   nav{
+      display: flex;
+   }
+   .about_img{
+      margin-top: 10px;
+      margin-left: auto;
+   }
+   .about_img_div{
+      width: 100%;
+   }
+ 
+  
+#about{
+   height: fit-content;
+}
+}
+@media only screen and (max-width: 600px) {
+   .header_img{
+      margin-left: auto;
+      margin-right: auto;
+      height: 310px;
+      margin-bottom: 0;
+      margin-top: 90px;
+   }
+   .hedlines{
+      margin-top: 150px;
+      height: auto;
+      width: 350px;
+      overflow: scroll;
+   }
+   .hedlines li{
+      font-size: 18px;
+   }
+   #home{
+      display: grid;
+   }
+   .product_img{
+      height: 470px;
+   }
+   .product_img_div{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+   } 
+   .product_detail{
+      margin-left: 150px;
+   }  
+   .float{
+	width:40px;
+	height:40px;
+   i{
+      font-size:25px;
+   }
+}
+   .float_youtube{
+	width:40px;
+	height:40px;
+   margin-bottom: -20px;
+   
+   i{
+      font-size:24px;
+      color: red;
+      }
+   }
+   .float_fesbook{
+	width:40px;
+	height:40px;
+   margin-bottom: -40px;
+   i{
+      font-size:24px;
+      color: rgb(255, 255, 255);
+   }
+}
+}
+@media only screen and (max-width: 500px) {
+   header {
+   top: 0;
+   }
+   .header_img{
+      height: 300px;
+      margin-bottom: 0;
+      margin-top: 90px;
+   }
+   .hedlines{
+      margin-top: 100px;
+      height: auto;
+      width: 350px;
+      overflow: scroll;
+   }
+   .hedlines li{
+      font-size: 18px;
+   }
+   #home{
+      display: grid;
+   }
+   .product_img{
+      height: 450px;
+   }  
+   .product_detail{
+      margin-left: 90px;
+   }  
+}
+@media only screen and (max-width: 400px) {
+   header{
+      overflow: scroll;
+   }
+   .header_img{
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+      height: 80%;
+      margin-bottom: 0;
+      margin-top: 90px;
+   }
+   .hedlines{
+      margin-top: 40px;
+      height: auto;
+      width: 350px;
+      overflow: scroll;
+   }
+   .hedlines li{
+      font-size: 18px;
+   }
+   #home{
+      display: grid;
+   }
+   .product_img{
+      height: 370px;
+   } 
+   .product_detail{
+      margin-left: 50px;
+   } 
+   .header_img_mobile{
+      margin-left: auto;
+   }
+   }
+</style>
+</head>
+<body>
+    
+   <header>
+      <a href="#" class="logo"><img src="{% static 'images/he.jpg' %}" height="30px" width="30px" style="border-radius: 50%;" alt=""></a>
+      <nav>
+          <a href="#home" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#product">product</a>
+          <!--a href="#sider">Book</a//-->
+          <a href="#contact">Contact</a>
+          <a href="#contact">Contact</a>
+      </nav>
+  </header>
+
+      <!--* home *-->
+      <section id="home" >
+         <img class="header_img header_img_back" src="{% static 'images/back.jpg' %}" alt=" ">
+         <img class="header_img header_img_mobile" src="{% static 'images/mobile.jpg' %}"  alt=" ">
+         <div class="hedlines text-center">
+            <li>🏫 महाराष्ट्रातील सर्व शाळा - शिक्षक, विद्यार्थी - पालक व विविध स्पर्धा परीक्षार्थी सर्वांसाठी उपयुक्त</li><hr>
+            <li>🎯 शालेय परिपाठाचे महाराष्ट्रातील / भारतातील एकमेव परिपूर्ण पुस्तक</li><hr>
+            <li>🧘 हे पुस्तक आपल्या किंवा आपण शिकलेल्या शाळेला नक्की भेट द्या.</li><hr>
+            <li>🔬 अभ्यासपूर्ण, वस्तुनिष्ठ माहितीचा खजिना</li><hr>
+            <li>📄 शालेय परिपाठासाठी प्रत्येक दिवसाचे स्वतंत्र पान</li><hr>
+            <a href="#product" class="btn btn-outline-primary">Read More</a>
+            </div>
+      </section>
+      <section class="promo-image-wrapper">
+         <img class="promo-image" style="width:360px; margin:auto;" src="{% static 'images/newimage.jpeg' %}" alt="शालेय परिपाठ पुस्तकाचे जाहिरात चित्र" />
+      </section>
+      <!--// home end //-->
+      <!--* about *-->
+
+            <section class="section" id="about"  >
+               <div class="about_box">
+                  <div class="about_img_div text-center">
+                     <h5 style="color:blue; font-weight: 600;">About</h5>
+                     <img width="330px"  src="{% static 'images/about.jpg' %}" alt=" ">
+                  </div>
+                  <div class="about_img_div text-center">
+                     <img class="about_img"  src="{% static 'images/Antrang.jpg' %}" alt=" ">
+                     <img class="about_img"  src="{% static 'images/arpen.jpg' %}" alt=" ">
+                  </div>
+               </div>
+            </section>
+
+            <!--// about end //-->
+              <!--* product *--> 
+            <section class="section" id="product">
+                  <div class="product_img_div">
+                     <img class="product_img"  src="{% static 'images/mobile.jpg' %}" alt=" ">
+                  </div>
+                  <div class="product_detail">
+                     <h6>🎤 प्रत्येक दिवशी अनुषंगिक विचारधन</h6><br>
+                     <h6>⏳ प्रत्येक दिवसाचे आठ ते दहा दिनविशेष</h6><br>
+                     <h6>🤵‍♂ जगभरातील महत्वपूर्ण 366 व्यक्तींची सविस्तर माहिती</h6><br>
+                     <h6>🌎 संपूर्ण सामान्य ज्ञान</h6><br>
+                     <h6>🤔 ऐकावे ते नवलच !</h6><br>
+                     <h6>💥 यासह सुविचार, म्हणी, वाकप्रचार, इंग्रजी शब्द, नकाशे, गीतमंच, संत-महात्मे, बोधकथा इ.</h6><br>
+                     <h6>&#128214;पुस्तकाचे नाव - शालेय परिपाठ</h6><br>
+                     <h6>✍ लेखक - अजित कणसे</h6><br>
+                     <h6>📚 प्रकाशक - कमलाई प्रकाशन</h6><br>
+                     <h6>📘 पुस्तकाची साईज - A4 साईज</h6><br>
+                     <h6>📄 एकूण पाने - 424</h6><br>
+                     <h6>📄 एकूण पाने - 424</h6><br>
+                     <h6>💵मूळ किंमत - रु. 600/-</h6><br>
+                     <h6>💵सवलत मूल्य -  रु. 500/- घरपोच</h6><br>
+                     <h6>🎉जास्त पुस्तके घेतल्यास सवलत मूल्यावर सवलत मिळेल.</h6><br>
+                  </div>
+        </section>
+        <!--//product end//-->
+
+        <!--* slider *--
+         <section class="section" id="sider">
+            <div class="slider_div" >
+               <br><br><br><br>
+               <br><br><br><br>
+               {% include 'html/slider.html' %}
+            </div>
+         </section>
+        <!--// slider end //-->
+
+         <!--* contact *-->
+        <section class="section text-center" id="contact" >
+           <br><br>
+           <br><br>
+           <br><br>
+           <div class="contact_box">
+            <div class="card-list" style="margin: auto;">
+               <article class="card">
+               <figure class="card-image">
+                  <img  src="{% static 'images/owner.jpg' %}" alt=" " class="img" />
+               </figure>
+               <div class="card-header">
+                  <a>📱संपर्क : 8390365366</a><br><br>
+                  <a>पत्ता  : <br><br> <h4 style="font-size: 20px; font-weight: 600;">कमलाई प्रकाशन ता. करमाळा,<br> जि. सोलापूर (महाराष्ट्र)</h4></a>
+               </div>
+               <div class="location">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15143.050553823827!2d75.188240946866!3d18.403650933053367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc48fd908f67c1d%3A0xa6b0cb7782579870!2sKarmala%2C%20Maharashtra%20413203!5e0!3m2!1sen!2sin!4v1718257431211!5m2!1sen!2sin" width="337" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+               </div>
+               <div class="card-footer">
+                  📧 'शालेय परिपाठ' हे पुस्तक मागवण्यासाठी कृपया आपले संपूर्ण नाव, पिनकोडसह पत्ता, फोन नंबर या मोबाईल 8390365366 क्रमांकावर फोन पे अथवा गुगल पे अथवा QR कोडने पैसे सेंड केलेला स्क्रीन शॉट पाठवावा.
+               </div>
+               <div class="card_foote_img">
+                  <img  src="{% static 'images/QR.jpg' %}" alt=" " />
+               </div>
+            </article>
+            </div>
+         </div>
+      </section>  
+
+      <!--// contact end //-->
+      <a href="https://api.whatsapp.com/send?text=hi&phone=+91 8390365366" class="float">
+         <i class="fa fa-whatsapp" style="font-size:24px"></i>
+         </a>
+         <a href="https://www.youtube.com/" class="float_youtube">
+            <i class="fa fa-youtube-play"></i>
+         </a>
+         <a href="https://www.facebook.com/groups/969063054970263/?ref=share&mibextid=NSMWBT" class="float_fesbook">
+            <i class="fa fa-facebook-f"></i>
+         </a>
+         <script>
+            let sections = document.querySelectorAll('section');
+      let navLinks = document.querySelectorAll('header nav a');
+      window.onscroll = () => {
+          sections.forEach(sec => {
+              let top = window.scrollY;
+              let offset = sec.offsetTop - 150;
+              let height = sec.offsetHeight;
+              let id = sec.getAttribute('id');
+              if(top >= offset && top < offset + height) {
+                  navLinks.forEach(links => {
+                      links.classList.remove('active');
+                      document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+                  });
+              };
+          });
+      };
+          </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
