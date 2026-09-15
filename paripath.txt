@@ -4,9 +4,9 @@
 
 ********** restart ******
 
-root
 cd paripath
 git pull
+python manage.py collectstatic --noinput
 systemctl daemon-reload
 systemctl restart shaleyparipath.com.gunicorn
 exit
