@@ -450,6 +450,7 @@
          <a href="#home" class="active">Home</a>
          <a href="#about">About</a>
          <a href="#product">Product</a>
+         <a href="#pdf">PDF</a>
          <a href="#contact">Contact</a>
       </nav>
    </header>
@@ -531,6 +532,78 @@
       </div>
    </div>
    <br>
+
+   <!-- PDF BOOKLET -->
+   <section id="pdf" class="container" style="padding:30px 12px 80px; scroll-margin-top:110px;">
+      <div class="text-center mb-3">
+         <h5 style="color:blue; font-weight:600;">📘 शालेय परिपाठ — नमुना पुस्तिका (PDF)</h5>
+         <p class="mb-2">पुस्तकातील निवडक १६ पाने पहा.</p>
+         <a href="{% static 'pdf/booklet-2.pdf' %}" target="_blank" rel="noopener" class="btn btn-primary m-1">
+            <i class="fa fa-eye"></i> PDF पहा
+         </a>
+         <a href="{% static 'pdf/booklet-2.pdf' %}" download="Shaley-Paripath-Booklet.pdf" class="btn btn-outline-primary m-1">
+            <i class="fa fa-download"></i> डाउनलोड करा
+         </a>
+      </div>
+      <div id="pdf-viewer" style="max-height:80vh; overflow-y:auto; background:#f1f1f1; border:1px solid #ddd; border-radius:10px; padding:8px;">
+         <p id="pdf-loading" class="text-center my-3">⏳ PDF लोड होत आहे...</p>
+      </div>
+   </section>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+   <script>
+      (function () {
+         const url = "{% static 'pdf/booklet-2.pdf' %}";
+         const viewer = document.getElementById('pdf-viewer');
+         const loading = document.getElementById('pdf-loading');
+         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+         let started = false;
+
+         async function renderPdf() {
+            if (started) return;
+            started = true;
+            try {
+               const pdf = await pdfjsLib.getDocument(url).promise;
+               loading.remove();
+               const width = viewer.clientWidth - 16;
+               const ratio = Math.min(window.devicePixelRatio || 1, 2);
+
+               for (let i = 1; i <= pdf.numPages; i++) {
+                  const page = await pdf.getPage(i);
+                  const base = page.getViewport({ scale: 1 });
+                  const viewport = page.getViewport({ scale: (width / base.width) * ratio });
+
+                  const canvas = document.createElement('canvas');
+                  canvas.width = viewport.width;
+                  canvas.height = viewport.height;
+                  canvas.style.width = '100%';
+                  canvas.style.display = 'block';
+                  canvas.style.marginBottom = '8px';
+                  canvas.style.background = '#fff';
+                  canvas.style.boxShadow = '0 1px 4px rgba(0,0,0,0.15)';
+                  viewer.appendChild(canvas);
+
+                  await page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
+               }
+            } catch (e) {
+               console.error(e);
+               loading.textContent = 'PDF लोड झाली नाही. कृपया "PDF पहा" बटण वापरा.';
+            }
+         }
+
+         if ('IntersectionObserver' in window) {
+            const obs = new IntersectionObserver(function (entries) {
+               if (entries[0].isIntersecting) {
+                  renderPdf();
+                  obs.disconnect();
+               }
+            }, { rootMargin: '300px' });
+            obs.observe(viewer);
+         } else {
+            renderPdf();
+         }
+      })();
+   </script>
 
    {% include 'html/slider.html' %}
 
